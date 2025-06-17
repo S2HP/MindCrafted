@@ -1,0 +1,83 @@
+Project Description - MindCrafted
+
+Application Name:
+MindCrafted
+
+Team
+This project is being developed by:
+	Jānis Sniedze (design, development, UI design, programming of controllers and models)
+
+Business Area:
+MindCrafted is a community-driven platform focused on skill-sharing and peer-to-peer learning. It allows users to offer lessons or workshops in their area of expertise and learn new skills from others. This can include anything from languages and cooking to programming or photography.
+
+Main Tasks of the Application:
+    Users can offer or search for skill-sharing sessions
+    Book one-on-one or group lessons
+    Track learning history and progress
+    Communicate via internal messaging system
+    Review and rate sessions
+
+User Roles:
+    Admin – Maintains overall platform health, manages user content, handles disputes.
+    Instructor – Shares skills by creating sessions, manages schedules, communicates with learners.
+    Learner – Finds and books sessions, joins classes, tracks progress, and leaves reviews.
+
+Typical Use Cases:
+    Admin:
+        Approves new instructor applications.
+        Accesses platform statistics and manages system settings.
+    Instructor:
+        Logs i to create a new session (e.g., “Intro to Watercolor Painting”).
+        Sets schedule, location (in-person or online), and max participants.
+        Views messages from learners, confirms bookings.
+        Tracks feedback and ratings from past sessions.
+    Learner:
+        Browses available sessions using filters like category, time, or location.
+        Books a session and sends a message to the instructor.
+        Attends the session and leaves a review afterward.
+        Views learning progress and saves favorite instructors.
+		
+Development Environment:
+    Backend: PHP using Laravel Framework
+    Frontend: Blade templates, HTML5, Tailwind CSS, optional Vue.js or Livewire for interactivity
+    Database: MySQL
+    Authentication: Laravel Breeze or Jetstream
+
+MVC Structure and Database Model:
+Models:
+    User (id, name, email, password, role, bio, profile_photo)
+    Session (id, user_id, title, description, category_id, start_time, end_time, location, capacity, price)
+    Booking (id, session_id, learner_id, status)
+    Message (id, sender_id, receiver_id, content, timestamp)
+    Review (id, session_id, learner_id, rating, comment)
+    Category (id, name)
+
+Controllers:
+    AuthController (login, register, logout)
+    SessionController (create, update, delete, view sessions)
+    BookingController (create/cancel bookings)
+    AdminController (user/session management)
+    MessageController (send/receive messages)
+
+Views:
+    Landing page (intro, featured sessions, categories)
+    Session listing and details
+    Instructor dashboard (my sessions, bookings, messages)
+    Learner dashboard (booked sessions, learning history)
+    Admin dashboard (user management, system reports)
+
+Interface Examples:
+    Landing Page:
+        Search bar with categories dropdown
+        Featured instructors and popular sessions
+        "Offer a Skill" and "Learn Something New" buttons
+
+    Instructor Dashboard:
+        Overview of upcoming sessions
+        Quick link to create new session
+        List of learner messages and reviews
+
+    Learner Dashboard:
+        Timeline of upcoming and past sessions
+        Progress tracker with badges for completed categories
+        Inbox for communicating with instructors
