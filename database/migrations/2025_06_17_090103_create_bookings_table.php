@@ -13,10 +13,9 @@ public function up()
 {
     Schema::create('bookings', function (Blueprint $table) {
         $table->id();
-        $table->foreignId('session_id')->constrained()->onDelete('cascade');
+        $table->foreignId('session_id')->constrained('course_sessions')->onDelete('cascade');
         $table->foreignId('learner_id')->constrained('users')->onDelete('cascade');
         $table->timestamps();
-        // Add other fields as needed
     });
 }
 

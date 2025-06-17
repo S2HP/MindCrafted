@@ -6,44 +6,21 @@ use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration {
     public function up(): void {
-        Schema::table('sessions', function (Blueprint $table) {
-            if (!Schema::hasColumn('sessions', 'title')) {
-                $table->string('title')->nullable();
-            }
-            if (!Schema::hasColumn('sessions', 'description')) {
-                $table->text('description')->nullable();
-            }
-            if (!Schema::hasColumn('sessions', 'start_time')) {
-                $table->timestamp('start_time')->nullable();
-            }
-            if (!Schema::hasColumn('sessions', 'end_time')) {
-                $table->timestamp('end_time')->nullable();
-            }
-            if (!Schema::hasColumn('sessions', 'location')) {
-                $table->string('location')->nullable();
-            }
-            if (!Schema::hasColumn('sessions', 'capacity')) {
-                $table->integer('capacity')->nullable();
-            }
-            if (!Schema::hasColumn('sessions', 'price')) {
-                $table->decimal('price', 8, 2)->nullable();
-            }
-            // Skip user_id, already exists
+        Schema::create('course_sessions', function (Blueprint $table) {
+            $table->id(); // Creates unsigned BIGINT auto-incrementing primary key
+            $table->string('title')->nullable();
+            $table->text('description')->nullable();
+            $table->timestamp('start_time')->nullable();
+            $table->timestamp('end_time')->nullable();
+            $table->string('location')->nullable();
+            $table->integer('capacity')->nullable();
+            $table->decimal('price', 8, 2)->nullable();
+            $table->unsignedBigInteger('user_id'); // optional: if you have a user relation
+            $table->timestamps();
         });
     }
 
     public function down(): void {
-        Schema::table('sessions', function (Blueprint $table) {
-            $table->dropColumn([
-                'title',
-                'description',
-                'start_time',
-                'end_time',
-                'location',
-                'capacity',
-                'price',
-            ]);
-        });
+        Schema::dropIfExists('sessions');
     }
 };
-
