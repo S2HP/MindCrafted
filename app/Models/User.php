@@ -60,4 +60,8 @@ public function isLearner()
 {
     return $this->role === 'learner';
 }
+
+public function bookedSessions() {
+        return $this->belongsToMany(\App\Models\Session::class, 'bookings', 'learner_id', 'session_id');
+    }
 }

@@ -7,4 +7,7 @@ class Session extends Model {
     public function instructor() { return $this->belongsTo(User::class, 'user_id'); }
     public function bookings() { return $this->hasMany(Booking::class); }
     public function user() { return $this->belongsTo(User::class); }
+    public function learners() {
+        return $this->belongsToMany(User::class, 'bookings', 'session_id', 'learner_id');
+    }
 }

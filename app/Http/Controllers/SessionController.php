@@ -18,7 +18,7 @@ class SessionController extends Controller
         } else {
             $sessions = Session::all();
         }
-        dd($sessions);
+        // dd($sessions);
         return view('sessions.index', compact('sessions'));
     }
 
@@ -41,7 +41,11 @@ class SessionController extends Controller
 
         $session = new \App\Models\Session($request->all());
         $session->user_id = Auth::id();
-        $session->save();
+        $saved = $session->save();
+
+        if (!$saved) {
+            return back()->withErrors(['Could not save session.'])->withInput();
+        }
 
         return redirect()->route('sessions.create')->with('success', 'Session created!');
     }

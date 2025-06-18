@@ -46,7 +46,7 @@
         </div>
 
     {{-- LEARNER --}}
-    @else
+    @elseif($u->role === 'learner')
         <div class="space-y-2">
             <a href="{{ route('sessions.index') }}"
                class="inline-block bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Browse Sessions</a><br>
