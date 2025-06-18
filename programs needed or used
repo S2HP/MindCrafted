@@ -1,0 +1,9 @@
+Visual Studio Code
+XAMPP
+
+Path needs to be changed to XAMPP's path.
+
+
+commands:
+php artisan migrate:fresh --seed
+php artisan serve

@@ -14,7 +14,7 @@ class BookingController extends Controller
 
     public function store(Request $request) {
         $data = $request->validate([
-            'session_id' => 'required|exists:sessions,id',
+            'session_id' => 'required|exists:course_sessions,id',
         ]);
 
         $data['learner_id'] = Auth::id();
