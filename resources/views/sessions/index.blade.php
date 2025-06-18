@@ -11,6 +11,13 @@
                     Location: {{ $session->location }} <br>
                     Instructor: {{ $session->user->name ?? 'Unknown' }}
                 </p>
+                @if(auth()->user()->role === 'learner')
+                    <form method="POST" action="{{ route('bookings.store') }}" class="mt-2">
+                        @csrf
+                        <input type="hidden" name="session_id" value="{{ $session->id }}">
+                        <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Book</button>
+                    </form>
+                @endif
             </div>
         @endforeach
     </div>

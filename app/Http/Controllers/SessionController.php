@@ -18,7 +18,7 @@ class SessionController extends Controller
         } else {
             $sessions = Session::all();
         }
-
+        dd($sessions);
         return view('sessions.index', compact('sessions'));
     }
 
@@ -39,18 +39,11 @@ class SessionController extends Controller
             'price' => 'required|numeric|min:0',
         ]);
 
-        Session::create([
-            'title' => $request->title,
-            'description' => $request->description,
-            'start_time' => $request->start_time,
-            'end_time' => $request->end_time,
-            'location' => $request->location,
-            'capacity' => $request->capacity,
-            'price' => $request->price,
-            'user_id' => Auth::id(),
-        ]);
+        $session = new \App\Models\Session($request->all());
+        $session->user_id = Auth::id();
+        $session->save();
 
-        return redirect()->route('sessions.index')->with('success', 'Session created successfully.');
+        return redirect()->route('sessions.create')->with('success', 'Session created!');
     }
 
 
